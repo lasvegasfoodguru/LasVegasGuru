@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Plans | Las Vegas Food Guru</title>
+<style>
+:root{--bg:#0B0F17;--card:#131A26;--line:#26303f;--mut:#9AA4B2;--money:#00E676;--gold:#FFC83D}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#F4F6FA;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding-bottom:100px}
+.num{font-variant-numeric:tabular-nums}.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+h1{font-size:clamp(2rem,6vw,3.5rem);margin:40px 0 8px;line-height:1.1}h1 span{color:#FF2BD6}
+.mut{color:var(--mut)}button,.btn{min-height:56px;border-radius:14px;font:inherit;font-weight:700;cursor:pointer;transition:all .25s ease-out}
+.btn{display:inline-flex;align-items:center;padding:0 22px;text-decoration:none;color:#0B0F17;background:#00F0FF;border:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin:20px 0}
+.chips{display:flex;flex-wrap:wrap;gap:10px}.chip{background:none;color:#fff;border:1px solid var(--line);padding:0 18px}.chip[aria-pressed=true]{border-color:#FF2BD6;box-shadow:0 0 14px #ff2bd680}
+input[type=range]{width:100%;height:56px;accent-color:#FF2BD6}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:14px;overflow:hidden}.seg button{background:none;color:#fff;border:0;padding:0 20px;border-radius:0}.seg button[aria-checked=true]{background:#00F0FF;color:#0B0F17}
+.grid{display:grid;gap:16px}@media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}@media(min-width:1100px){.grid{grid-template-columns:repeat(4,1fr);align-items:end}}
+.flip{perspective:1200px;cursor:pointer;background:none;border:0;padding:0;color:inherit;text-align:left;width:100%}.fi{position:relative;min-height:inherit;transition:transform .3s ease-out;transform-style:preserve-3d}
+.flip.on .fi{transform:rotateY(180deg)}@media(hover:hover){.flip:hover .fi{transform:rotateY(180deg)}}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:var(--card);border:2px solid var(--a);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.back{transform:rotateY(180deg)}.rec .face{box-shadow:0 0 28px #ff2bd6aa}.badge{align-self:flex-start;background:#FF2BD6;color:#0B0F17;font-size:.75rem;font-weight:800;padding:4px 10px;border-radius:99px}
+.icon{font-size:3rem}.job{font-size:1.9rem;font-weight:900;color:var(--a);margin:0}.price{font-size:2.4rem;font-weight:900}
+section.plan{border-left:4px solid var(--a);padding-left:18px;margin:48px 0}.plan h2{font-size:clamp(2rem,5vw,3rem);color:var(--a);margin:0}
+.pair{display:grid;gap:12px}@media(min-width:760px){.pair{grid-template-columns:1fr 1fr}}.pair div{border:1px solid var(--line);border-radius:14px;padding:14px}
+.lbl{font-size:.75rem;text-transform:uppercase;font-weight:800;color:var(--mut)}
+.newbox{border:2px solid var(--gold);border-radius:16px;padding:14px;margin:12px 0}.newbox li{font-size:1.15rem;font-weight:700}
+.inc{background:none;border:1px dashed var(--line);color:var(--mut);padding:0 16px;width:100%;text-align:left}.incl{color:var(--mut);opacity:.7}
+.strip{display:flex;flex-wrap:wrap;gap:8px;font-size:.95rem}.strip b{color:var(--money)}.up{color:var(--gold);font-weight:700}
+.tbl{overflow:auto;max-height:80vh;border:1px solid var(--line);border-radius:16px}table{border-collapse:separate;border-spacing:0;width:100%;min-width:720px}
+th,td{padding:12px;border-bottom:1px solid var(--line);text-align:center;background:var(--card)}thead th{position:sticky;top:0;z-index:2}
+td:first-child,th:first-child{position:sticky;left:0;text-align:left;z-index:1;min-width:190px}thead th:first-child{z-index:3}
+.sel{background:#1b2333!important;box-shadow:inset 0 0 0 2px var(--a)}
+.new{background:var(--gold);color:#0B0F17;font-size:.65rem;font-weight:800;padding:2px 6px;border-radius:99px;margin-left:4px;display:inline-block}.pulse{animation:p .3s ease-out 2}@keyframes p{50%{transform:scale(1.25)}}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#0d1320ee;border-top:1px solid var(--line);z-index:9}.bar .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:opacity .2s!important}.flip .fi{transform:none!important}.back{transform:none;opacity:0}.flip.on .back{opacity:1}.flip.on .front{opacity:0}}
+@media print{.bar{display:none}section,tr,.panel{break-inside:avoid}h2{break-after:avoid}}
+</style></head><body>
+<main class="wrap">
+<h1>Get Las Vegas diners <span>driven to your door.</span></h1>
+<p class="mut">Taxi, limo and rideshare drivers recommend you. Higher plans include everything in the plans below them.</p>
+<div class="panel"><h2 style="margin-top:0">Which plan fits you?</h2>
+<p class="mut">What kind of business are you?</p><div class="chips" id="biz"></div>
+<label for="sl" style="display:block;margin-top:18px">How many diners do you want from drivers each month? <b id="slv"></b></label>
+<input id="sl" type="range" min="1" max="4" step="1" value="1"></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<h2>The 4 plans</h2><div class="seg" role="radiogroup" aria-label="Price view"><button role="radio" aria-checked="true" data-y="0">Monthly</button><button role="radio" aria-checked="false" data-y="1">First year</button></div></div>
+<p class="mut">Tap or hover a card to flip it.</p>
+<div class="grid" id="cards"></div><p class="sr" aria-live="polite" id="live"></p>
+<div id="plans"></div>
+<h2 id="compare">Compare plans</h2>
+<label style="display:inline-flex;gap:10px;align-items:center;min-height:56px"><input type="checkbox" id="diff" style="width:24px;height:24px"> Show only differences</label>
+<div class="tbl"><table id="tbl"></table></div>
+</main>
+<div class="bar"><div class="wrap"><div><b id="bn"></b><br><span class="num mut" id="bp"></span></div><a class="btn" id="bgo" href="#">Start</a></div></div>
+<script>
+var T=[
+{id:1,name:"Food Truck & Mom-and-Pop Pass",job:"Get found.",icon:"📍",a:"#00F0FF",setup:75,mo:49,bounty:25,best:"Food trucks, taco stands, bakeries, small family delis",
+get:"You go live on our site, voice search and in-cab tablets, with 3 deals and drivers recommending you.",see:"Diners see your listing and up to 3 deals when they search nearby or scan a driver's QR.",
+up:"Upgrade to Tier 2 to show up above basic listings and run 5 deals, including Hot Deals.",nw:["Listing on site, voice search & in-cab tablets","3 deal slots","Driver referral network","Your own merchant portal","$25 driver bounty"]},
+{id:2,name:"Neighborhood Growth Pass",job:"Get chosen.",icon:"🎟️",a:"#8B5CF6",setup:149,mo:125,bounty:25,best:"Neighborhood cafes, lunch spots, family diners",
+get:"You rank first in your neighborhood, run 5 deals with Hot Deals, and collect reviews automatically.",see:"Diners see you at the top of neighborhood results, with a Hot Deal badge and your reviews.",
+up:"Upgrade to Tier 3 to get your own Showcase Page, a pro foodie video and voice-search priority.",nw:["Better placement","2 more deal slots + Hot Deals","Neighborhood search priority","Automated review tools"]}];
+T.push({id:3,name:"Showcase & Foodie Video Pass",job:"Get driven to.",icon:"🚕",a:"#FF2BD6",setup:350,mo:299,bounty:25,best:"Steakhouses, destination eateries, busy diners",
+get:"You get a full Showcase Page and a pro foodie video that plays on in-cab tablets, plus voice-search priority.",see:"Riders watch your video in the cab, ask for you by voice and land on a page with your menu and photos.",
+up:"Upgrade to Tier 4 for a $50 driver bounty, VIP blasts, catering leads and exclusivity in your corridor.",nw:["Your own Showcase Page","A pro foodie video","Voice search priority"]},
+{id:4,name:"Elite VIP & Catering Engine",job:"Own the night.",icon:"👑",a:"#FFC83D",setup:1500,mo:750,bounty:50,best:"Strip-adjacent venues, supper clubs, large caterers",
+get:"You get branding everywhere, a new video every month, VIP blasts, catering leads and no competitors promoted in your corridor.",see:"Diners see your brand across the site, tablets and VIP emails, and drivers push you first for the $50 bounty.",
+up:"",nw:["Branding everywhere","New video every month","VIP newsletter blasts","B2B catering leads","Corridor exclusivity","$50 driver bounty"]});
+var ROWS=[["Listing on site, voice search & in-cab tablets",["Standard","Better placement","Showcase Page","Branding everywhere"],1],
+["Coupon / deal slots",["Up to 3","Up to 5 + Hot Deals","Up to 5 + Hot Deals","Up to 5 + Hot Deals"],1],
+["Driver referral network",[1,1,1,1],1],["Self-service merchant portal",[1,1,1,1],1],
+["Driver bounty per diner",["$25","$25","$25","$50 flat"],1],["Neighborhood search priority",[0,1,1,1],2],["Automated review tools",[0,1,1,1],2],
+["Interactive Showcase Page",[0,0,1,1],3],["Foodie video",[0,0,"Short pro video","New video monthly"],3],["Voice search priority",[0,0,1,1],3],
+["VIP newsletter blasts",[0,0,0,1],4],["B2B catering leads",[0,0,0,1],4],["Corridor exclusivity",[0,0,0,1],4]];
+var BIZ=[["Food truck",1],["Family diner",2],["Destination restaurant",3],["Bar / nightclub",4],["Catering",4]];
+var SL=["A few","Some","A lot","As many as possible"];
+var S={tier:1,yearly:false,rec:0};
+function $(i){return document.getElementById(i)}
+function each(q,f){[].forEach.call(document.querySelectorAll(q),f)}
+function money(n){return "$"+n.toLocaleString("en-US")}
+function price(t){return S.yearly?money(t.setup+12*t.mo)+" first year":money(t.mo)+"/mo"}
+function sub(t){return S.yearly?money(t.setup)+" setup + 12 × "+money(t.mo):money(t.setup)+" one-time setup"}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function cards(){var o=T.slice();if(S.rec)o.sort(function(a,b){return(b.id==S.rec)-(a.id==S.rec)});
+$("cards").innerHTML=o.map(function(t){var h=340+t.id*20;
+return '<button class="flip'+(t.id==S.rec?' rec':'')+'" style="--a:'+t.a+';min-height:'+h+'px" data-t="'+t.id+'" aria-label="Tier '+t.id+', '+esc(t.name)+', '+price(t)+'. '+esc(t.get)+'"><div class="fi" style="min-height:'+h+'px">'+
+'<div class="face front">'+(t.id==S.rec?'<span class="badge">Recommended for you</span>':'')+'<span class="icon" aria-hidden="true">'+t.icon+'</span><p class="job">'+t.job+'</p><b>Tier '+t.id+' · '+esc(t.name)+'</b><span class="price num">'+price(t)+'</span><span class="num mut">'+sub(t)+'</span></div>'+
+'<div class="face back"><span class="lbl">You get</span><p style="margin:0">'+esc(t.get)+'</p><span class="lbl">Your customers see</span><p style="margin:0">'+esc(t.see)+'</p></div></div></button>'}).join("");
+each(".flip",function(b){b.onclick=function(){b.classList.toggle("on");pick(+b.dataset.t)}})}
+function plans(){$("plans").innerHTML=T.map(function(t,i){var below=T.slice(0,i).reduce(function(a,x){return a.concat(x.nw)},[]);
+return '<section class="plan" id="tier-'+t.id+'" style="--a:'+t.a+'"><div style="display:flex;gap:14px;align-items:center"><span class="icon" aria-hidden="true">'+t.icon+'</span><h2>'+t.job+'</h2></div>'+
+'<p><b>Tier '+t.id+' · '+esc(t.name)+'</b> — <span class="num">'+money(t.mo)+'/mo · '+money(t.setup)+' setup</span><br><span class="mut">Best for: '+esc(t.best)+'</span></p>'+
+'<div class="pair"><div><span class="lbl">You get</span><p>'+esc(t.get)+'</p></div><div><span class="lbl">Your customers see</span><p>'+esc(t.see)+'</p></div></div>'+
+(i?'<p><button class="inc" aria-expanded="false" data-i="'+i+'">Everything in Tier '+i+', plus: ▾</button></p><ul class="incl" id="inc'+i+'" hidden>'+below.map(function(f){return '<li>✓ '+esc(f)+'</li>'}).join("")+'</ul>':'')+
+'<div class="newbox"><span class="lbl" style="color:var(--gold)">New in this plan</span><ul>'+t.nw.map(function(f){return '<li>'+esc(f)+'</li>'}).join("")+'</ul></div>'+
+'<p class="strip"><span>🚕 Driver shares your QR</span>→<span>🍽️ Diner arrives</span>→<span>💸 Driver earns <b class="num">'+money(t.bounty)+'</b></span></p>'+
+(t.up?'<p class="up">Why upgrade? '+esc(t.up)+'</p>':'')+'<a class="btn" style="background:'+t.a+'" href="/partner-signup/?tier='+t.id+'">Start with Tier '+t.id+'</a></section>'}).join("");
+each(".inc",function(b){b.onclick=function(){var l=$("inc"+b.dataset.i);l.hidden=!l.hidden;b.setAttribute("aria-expanded",String(!l.hidden))}})}
+function table(){var d=$("diff").checked,h='<thead><tr><th>Feature</th>'+T.map(function(t){return '<th class="'+(t.id==S.tier?'sel':'')+'" style="--a:'+t.a+'">Tier '+t.id+'<div class="num mut">'+price(t)+'</div></th>'}).join("")+'</tr></thead><tbody>';
+ROWS.forEach(function(r){if(d&&r[1].every(function(v){return v===r[1][0]}))return;
+h+='<tr><td>'+esc(r[0])+'</td>'+r[1].map(function(v,i){var t=T[i],c=v===0?'<span class="mut">—</span>':v===1?'<span style="color:'+t.a+'">✓</span>':esc(v);
+if(i+1==r[2])c+='<span class="new">NEW</span>';return '<td class="num'+(t.id==S.tier?' sel':'')+'" style="--a:'+t.a+'">'+c+'</td>'}).join("")+'</tr>'});
+$("tbl").innerHTML=h+'</tbody>';
+if("IntersectionObserver" in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("pulse");o.unobserve(e.target)}})});each(".new",function(n){o.observe(n)})}}
+function bar(){var t=T[S.tier-1],g=$("bgo");$("bn").textContent="Tier "+t.id+" · "+t.name;$("bp").textContent=price(t)+" · "+sub(t);g.textContent="Start with Tier "+t.id;g.href="/partner-signup/?tier="+t.id;g.style.background=t.a}
+function pick(id){S.tier=id;table();bar()}
+function recommend(id){S.rec=id;S.tier=id;cards();table();bar();$("live").textContent="Recommended for you: Tier "+id+", "+price(T[id-1])}
+$("biz").innerHTML=BIZ.map(function(b,i){return '<button class="chip" aria-pressed="false" data-i="'+i+'">'+b[0]+'</button>'}).join("");
+each(".chip",function(c){c.onclick=function(){each(".chip",function(x){x.setAttribute("aria-pressed","false")});c.setAttribute("aria-pressed","true");recommend(BIZ[+c.dataset.i][1])}});
+$("sl").oninput=function(){var v=+this.value;$("slv").textContent=SL[v-1];this.setAttribute("aria-valuetext",SL[v-1]);recommend(v)};
+$("slv").textContent=SL[0];
+each(".seg button",function(b){b.onclick=function(){S.yearly=b.dataset.y=="1";each(".seg button",function(x){x.setAttribute("aria-checked",String(x===b))});cards();table();bar();$("live").textContent="Showing "+(S.yearly?"first-year":"monthly")+" prices"}});
+$("diff").onchange=table;
+cards();plans();table();bar();
+</script>
+</body></html>
